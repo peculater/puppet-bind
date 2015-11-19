@@ -27,7 +27,7 @@ class bind (
         notify  => Service['bind'],
     }
 
-    if $install_utils {
+    if $install_tools {
         package{'bind-tools':
             ensure => latest,
             name   => $::bind::params::nsupdate_package,
