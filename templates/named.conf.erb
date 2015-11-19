@@ -23,7 +23,7 @@ options {
 	dnssec-enable <%= @dnssec ? 'yes' : 'no' %>;
 <%- if @dnssec -%>
 	dnssec-validation yes;
-	dnssec-lookaside auto;
+	dnssec-lookaside <%= @dnssec_lookaside %>;
 <%- end -%>
 <%- if @version != '' -%>
 	version "<%= @version %>";
