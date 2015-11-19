@@ -12,6 +12,7 @@ class bind (
     $statistics_port  = undef,
     $random_device    = undef,
     $include_local    = undef,
+    $install_tools    = undef,
 ) {
     include ::bind::params
 
@@ -26,10 +27,12 @@ class bind (
         notify  => Service['bind'],
     }
 
-    package{'bind-tools':
-        ensure => latest,
-        name   => $::bind::params::nsupdate_package,
-        before => Package['bind'],
+    if $install_utils {
+        package{'bind-tools':
+            ensure => latest,
+            name   => $::bind::params::nsupdate_package,
+            before => Package['bind'],
+        }
     }
 
     package { 'bind':
